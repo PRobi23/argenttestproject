@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ArgentTestProject</string>
+    <string name="intro_screen_wallet_address">Wallet address</string>
+    <string name="intro_screen_title">Intro screen</string>
+    <string name="intro_screen_navigate_to_tokens">ERC20 TOKENS</string>
+    <string name="erc_twenty_screen_title">ERC20 Screen</string>
 </resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/introScreenFragment">
+
+
+    <action
+        android:id="@+id/actionToErcTwentyScreen"
+        app:destination="@id/ercTwentyScreenFragment"
+        app:enterAnim="@anim/slide_in_left"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_right"
+        app:popUpTo="@id/introScreenFragment"
+        app:popUpToInclusive="false" />
+
+    <fragment
+        android:id="@+id/introScreenFragment"
+        android:name="com.test.argenttestproject.robertpapp.introScreen.IntroScreenFragment"
+        android:label="@string/intro_screen_title"
+        tools:layout="@layout/intro_screen_fragment" />
+
+    <fragment
+        android:id="@+id/ercTwentyScreenFragment"
+        android:name="com.test.argenttestproject.robertpapp.ercTwentyScreen.ErcTwentyScreenFragment"
+        android:label="@string/erc_twenty_screen_title"
+        tools:layout="@layout/erc_twenty_screen_fragment" />
+
+</navigation>

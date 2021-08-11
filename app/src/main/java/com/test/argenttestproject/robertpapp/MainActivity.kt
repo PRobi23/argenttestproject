@@ -1,11 +1,13 @@
-package com.test.argenttestproject
+package com.test.argenttestproject.robertpapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.test.argenttestproject.R
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.main_activity)
     }
 }

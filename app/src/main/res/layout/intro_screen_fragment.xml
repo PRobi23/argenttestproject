@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.test.argenttestproject.robertpapp.introScreen.IntroScreenViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/intro_screen_wallet_address_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/huge_margin"
+            android:text="@string/intro_screen_wallet_address"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/intro_screen_wallet_address_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="@id/intro_screen_wallet_address_title"
+            app:layout_constraintStart_toStartOf="@id/intro_screen_wallet_address_title"
+            app:layout_constraintTop_toBottomOf="@id/intro_screen_wallet_address_title"
+            bind:maskWalletAddress="@{viewModel.walletAddress}"
+            tools:text="@tools:sample/lorem/random" />
+
+        <Button
+            android:id="@+id/intro_screen_navigateToAccessTokensButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/huge_margin"
+            android:onClick="@{() -> viewModel.navigateToAccessTokens()}"
+            android:text="@string/intro_screen_navigate_to_tokens"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
