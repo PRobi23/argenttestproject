@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/introScreenFragment">
+
+    <fragment
+        android:id="@+id/introScreenFragment"
+        android:name="com.test.argenttestproject.ui.introscreen.IntroScreenFragment"
+        android:label="@string/intro_screen_title"
+        tools:layout="@layout/intro_screen_fragment" />
+
+</navigation>
