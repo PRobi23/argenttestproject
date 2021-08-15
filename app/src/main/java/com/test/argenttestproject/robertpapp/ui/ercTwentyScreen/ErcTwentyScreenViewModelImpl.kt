@@ -1,4 +1,4 @@
-package com.test.argenttestproject.robertpapp.ercTwentyScreen
+package com.test.argenttestproject.robertpapp.ui.ercTwentyScreen
 
 import com.test.argenttestproject.robertpapp.RxViewModel
 

@@ -114,5 +114,4 @@ dependencies {
     // RXDogTag
     implementation("com.uber.rxdogtag2:rxdogtag-autodispose:2.0.1")
 
-
 }

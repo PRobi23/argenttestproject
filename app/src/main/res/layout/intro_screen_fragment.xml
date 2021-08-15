@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.test.argenttestproject.robertpapp.introScreen.IntroScreenViewModel" />
+            type="com.test.argenttestproject.robertpapp.ui.introScreen.IntroScreenViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

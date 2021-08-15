@@ -1,12 +1,10 @@
-package com.test.argenttestproject.robertpapp.introScreen
+package com.test.argenttestproject.robertpapp.ui.introScreen
 
 import androidx.databinding.ObservableField
-import androidx.lifecycle.ViewModel
 import com.test.argenttestproject.robertpapp.RxViewModel
 import com.test.argenttestproject.robertpapp.data.SharedPreferenceRepository
 import com.test.argenttestproject.robertpapp.wrap
 import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.processors.PublishProcessor
 

@@ -1,4 +1,4 @@
-package com.test.argenttestproject.robertpapp.introScreen
+package com.test.argenttestproject.robertpapp.ui.introScreen
 
 import android.os.Looper
 import androidx.databinding.ObservableField

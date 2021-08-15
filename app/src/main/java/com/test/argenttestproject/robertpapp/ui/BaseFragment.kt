@@ -1,4 +1,4 @@
-package com.test.argenttestproject.robertpapp
+package com.test.argenttestproject.robertpapp.ui
 
 import androidx.fragment.app.Fragment
 import io.reactivex.rxjava3.disposables.CompositeDisposable

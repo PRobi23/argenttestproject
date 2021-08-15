@@ -1,4 +1,4 @@
-package com.test.argenttestproject.robertpapp.introScreen
+package com.test.argenttestproject.robertpapp.ui.introScreen
 
 import com.test.argenttestproject.robertpapp.data.SharedPreferenceRepository
 import io.mockk.every

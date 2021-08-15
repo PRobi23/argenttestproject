@@ -1,4 +1,4 @@
-package com.test.argenttestproject.robertpapp
+package com.test.argenttestproject.robertpapp.ui
 
 import android.app.Application
 import com.test.argenttestproject.robertpapp.data.SharedPreferenceRepository

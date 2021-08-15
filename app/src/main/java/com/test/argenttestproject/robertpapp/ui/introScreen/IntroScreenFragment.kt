@@ -1,4 +1,4 @@
-package com.test.argenttestproject.robertpapp.introScreen
+package com.test.argenttestproject.robertpapp.ui.introScreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.test.argenttestproject.R
 import com.test.argenttestproject.databinding.IntroScreenFragmentBinding
-import com.test.argenttestproject.robertpapp.BaseFragment
+import com.test.argenttestproject.robertpapp.ui.BaseFragment
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
