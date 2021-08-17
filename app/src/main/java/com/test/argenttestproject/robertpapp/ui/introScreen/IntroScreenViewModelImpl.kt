@@ -2,11 +2,12 @@ package com.test.argenttestproject.robertpapp.ui.introScreen
 
 import androidx.databinding.ObservableField
 import com.test.argenttestproject.robertpapp.RxViewModel
-import com.test.argenttestproject.robertpapp.data.SharedPreferenceRepository
+import com.test.argenttestproject.robertpapp.data.local.sharedRepository.SharedPreferenceRepository
 import com.test.argenttestproject.robertpapp.wrap
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.processors.PublishProcessor
+import timber.log.Timber
 
 
 class IntroScreenViewModelImpl(
@@ -27,7 +28,7 @@ class IntroScreenViewModelImpl(
         sharedPreferenceRepository.getWalletAddress()
             .subscribeBy(
                 onError = {
-
+                    Timber.e(it)
                 },
                 onSuccess = { walletAddressValue ->
                     walletAddress.set(walletAddressValue)

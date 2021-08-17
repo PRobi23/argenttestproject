@@ -1,6 +1,6 @@
 package com.test.argenttestproject.robertpapp.ui.introScreen
 
-import com.test.argenttestproject.robertpapp.data.SharedPreferenceRepository
+import com.test.argenttestproject.robertpapp.data.local.sharedRepository.SharedPreferenceRepository
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.rxjava3.core.Single
