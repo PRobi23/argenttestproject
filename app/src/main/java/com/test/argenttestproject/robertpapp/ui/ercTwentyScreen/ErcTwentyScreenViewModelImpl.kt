@@ -6,7 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import com.test.argenttestproject.robertpapp.RxViewModel
 import com.test.argenttestproject.robertpapp.data.local.ethplorerToken.EthplorerTokenRepository
 import com.test.argenttestproject.robertpapp.data.remote.response.etherscan.EtherscanRepository
+import com.test.argenttestproject.robertpapp.data.remote.response.etherscan.EtherscanResult
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.functions.BiConsumer
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import timber.log.Timber
@@ -16,8 +18,10 @@ class ErcTwentyScreenViewModelImpl(
     private val etherscanRepository: EtherscanRepository
 ) : ErcTwentyScreenViewModel, RxViewModel() {
 
-    override val tokenValues: MutableLiveData<List<TokenValueResult>> =
+    override val tokenValues: MutableLiveData<MutableList<TokenValueResult>> =
         MutableLiveData()
+
+    private val tokenValue = mutableListOf<TokenValueResult>()
 
     override val ercTwentyTokenSearchListener: SearchView.OnQueryTextListener =
         object : SearchView.OnQueryTextListener {
@@ -28,6 +32,7 @@ class ErcTwentyScreenViewModelImpl(
 
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let { nonNullSymbol ->
+                    tokenValue.clear()
                     ethplorerTokenRepository.getEthplorerTokenAddressessBySymbol(
                         nonNullSymbol
                     ).flatMapIterable {
@@ -43,11 +48,15 @@ class ErcTwentyScreenViewModelImpl(
                                 symbolName = symbol,
                                 balance = it.result.toDouble()
                             )
+
                         }
-                    }.subscribeOn(Schedulers.io())
+                    }
+                        .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeBy(
                             onNext = {
+                                tokenValue.add(it)
+                                tokenValues.postValue(tokenValue)
                                 Timber.i("Query:  $query, Result: $it")
                             },
                             onError = {
