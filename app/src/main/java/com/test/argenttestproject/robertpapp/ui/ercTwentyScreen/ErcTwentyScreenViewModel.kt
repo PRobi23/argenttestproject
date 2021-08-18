@@ -7,5 +7,5 @@ import androidx.lifecycle.LiveData
 interface ErcTwentyScreenViewModel {
     val ercTwentyTokenSearchListener: SearchView.OnQueryTextListener
 
-    val tokenValues: LiveData<List<TokenValueResult>>
+    val tokenValues: LiveData<MutableList<TokenValueResult>>
 }

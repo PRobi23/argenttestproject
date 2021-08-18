@@ -6,6 +6,8 @@ import com.test.argenttestproject.robertpapp.data.local.ethplorerToken.Ethplorer
 import com.test.argenttestproject.robertpapp.data.local.ethplorerToken.EthplorerTokenRepositoryImpl
 import com.test.argenttestproject.robertpapp.data.local.sharedRepository.SharedPreferenceRepository
 import com.test.argenttestproject.robertpapp.data.local.sharedRepository.SharedPreferenceRepositoryImpl
+import com.test.argenttestproject.robertpapp.data.remote.response.etherscan.EtherscanRepository
+import com.test.argenttestproject.robertpapp.data.remote.response.etherscan.EtherscanRepositoryImpl
 import com.test.argenttestproject.robertpapp.ui.MainViewModelImpl
 import com.test.argenttestproject.robertpapp.ui.ercTwentyScreen.ErcTwentyScreenViewModelImpl
 import com.test.argenttestproject.robertpapp.ui.introScreen.IntroScreenViewModelImpl
@@ -19,7 +21,7 @@ val appModule = module {
 
     viewModel { MainViewModelImpl(get(), get()) }
 
-    viewModel { ErcTwentyScreenViewModelImpl(get()) }
+    viewModel { ErcTwentyScreenViewModelImpl(get(), get()) }
 
 
     single {
@@ -36,6 +38,10 @@ val appModule = module {
 
     single<EthplorerTokenRepository> {
         EthplorerTokenRepositoryImpl(get(), get())
+    }
+
+    single<EtherscanRepository> {
+        EtherscanRepositoryImpl(get(), get())
     }
 }
 

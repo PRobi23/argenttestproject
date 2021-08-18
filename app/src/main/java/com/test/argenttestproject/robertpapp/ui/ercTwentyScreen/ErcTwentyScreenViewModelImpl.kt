@@ -5,15 +5,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.test.argenttestproject.robertpapp.RxViewModel
 import com.test.argenttestproject.robertpapp.data.local.ethplorerToken.EthplorerTokenRepository
+import com.test.argenttestproject.robertpapp.data.remote.response.etherscan.EtherscanRepository
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import timber.log.Timber
 
 class ErcTwentyScreenViewModelImpl(
-    private val ethplorerTokenRepository: EthplorerTokenRepository
+    private val ethplorerTokenRepository: EthplorerTokenRepository,
+    private val etherscanRepository: EtherscanRepository
 ) : ErcTwentyScreenViewModel, RxViewModel() {
 
-    override val tokenValues: LiveData<List<TokenValueResult>> =
+    override val tokenValues: LiveData<MutableList<TokenValueResult>> =
         MutableLiveData()
 
     override val ercTwentyTokenSearchListener: SearchView.OnQueryTextListener =
@@ -27,11 +29,26 @@ class ErcTwentyScreenViewModelImpl(
                 query?.let { nonNullSymbol ->
                     ethplorerTokenRepository.getEthplorerTokenAddressessBySymbol(
                         nonNullSymbol
-                    )
-                        .subscribeOn(Schedulers.io())
+                    ).flatMapIterable {
+                        it
+                    }.flatMapSingle { symbolWithAddress ->
+                        val symbol = symbolWithAddress.first
+                        val address = symbolWithAddress.second
+
+                        etherscanRepository.getHistoricalBalance(
+                            address
+                        ).doOnSuccess { result ->
+                            tokenValues.value?.add(
+                                TokenValueResult(
+                                    symbolName = symbol,
+                                    balance = result.balance
+                                )
+                            )
+                        }
+                    }.subscribeOn(Schedulers.io())
                         .subscribeBy(
                             onNext = {
-                                val i = 2
+                                Timber.i("Query:  $query, Result: $it")
                             }
                         ).disposeOnCleared()
                 }

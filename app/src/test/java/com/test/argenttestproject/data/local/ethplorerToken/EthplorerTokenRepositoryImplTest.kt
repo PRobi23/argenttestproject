@@ -169,14 +169,18 @@ class EthplorerTokenRepositoryImplTest {
         every {
             mockEthplorerTokenDao.getAddresssBySymbol(testSymbol)
         } returns Flowable.just(
-            addresses
+            listOf(testEntityData)
         )
         withSut {
-            getEthplorerTokenAddressessBySymbol(testSymbol)
+            val testSubscriber =getEthplorerTokenAddressessBySymbol(testSymbol).test()
 
             verify {
                 mockEthplorerTokenDao.getAddresssBySymbol(testSymbol)
             }
+
+            testSubscriber
+                .assertNoErrors()
+                .assertValue(listOf(testEntityData.symbol to testEntityData.address))
         }
     }
 

@@ -21,8 +21,12 @@ class EthplorerTokenRepositoryImpl(
                 }
         )
 
-    override fun getEthplorerTokenAddressessBySymbol(symbol: String): Flowable<List<String>> =
-        ethplorerTokenDao.getAddresssBySymbol(symbol)
+    override fun getEthplorerTokenAddressessBySymbol(symbol: String): Flowable<List<Pair<String, String>>> =
+        ethplorerTokenDao.getAddresssBySymbol(symbol).map { ethplorerTokens ->
+            ethplorerTokens.map { token ->
+                token.symbol to token.address
+            }
+        }
 
     private fun etphlorerTokenResponseToEntities(response: List<EthplorerToken>) = response.map {
         EthplorerTokenEntity(
