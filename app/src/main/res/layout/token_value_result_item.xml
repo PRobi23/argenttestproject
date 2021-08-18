@@ -9,6 +9,7 @@
         android:id="@+id/token_value_result_symbol_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="USD" />
@@ -17,6 +18,7 @@
         android:id="@+id/token_value_result_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
         app:layout_constraintStart_toEndOf="@id/token_value_result_symbol_name"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="14.75" />

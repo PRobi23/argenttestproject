@@ -1,7 +1,7 @@
 package com.test.argenttestproject.robertpapp.data.remote.response.etherscan
 
-data class Result(
+data class EtherscanResult(
     val status: String,
     val message: String,
-    val result: String
+    val result: Int
 )

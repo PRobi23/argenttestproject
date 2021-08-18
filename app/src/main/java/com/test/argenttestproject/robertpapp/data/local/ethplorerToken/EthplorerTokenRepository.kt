@@ -5,7 +5,7 @@ import io.reactivex.rxjava3.core.Flowable
 
 interface EthplorerTokenRepository {
 
-    fun updateEthplorerTokens() : Completable
+    fun updateEthplorerTokens(): Completable
 
-    fun getEthplorerTokenAddressessBySymbol(symbol: String): Flowable<List<String>>
+    fun getEthplorerTokenAddressessBySymbol(symbol: String): Flowable<List<Pair<String, String>>>
 }

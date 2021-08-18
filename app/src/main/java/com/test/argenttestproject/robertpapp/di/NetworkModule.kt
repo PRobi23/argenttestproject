@@ -5,9 +5,11 @@ import com.test.argenttestproject.robertpapp.data.remote.api.EtherscanApi
 import com.test.argenttestproject.robertpapp.data.remote.api.EthplorerApi
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 val networkModule = module {
     factory { provideOkHttpClient() }
@@ -33,4 +35,12 @@ fun provideEtherscanApi(okHttpClient: OkHttpClient): EtherscanApi =
         .build()
         .create(EtherscanApi::class.java)
 
-fun provideOkHttpClient(): OkHttpClient = OkHttpClient().newBuilder().build()
+fun provideOkHttpClient(): OkHttpClient {
+    val interceptor = HttpLoggingInterceptor()
+    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+
+    return OkHttpClient()
+        .newBuilder()
+        .addInterceptor(interceptor)
+        .build()
+}

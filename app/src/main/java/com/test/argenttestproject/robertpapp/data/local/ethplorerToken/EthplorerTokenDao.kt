@@ -12,8 +12,8 @@ interface EthplorerTokenDao {
     @Query("SELECT * FROM ethplorerTokens")
     fun getAll(): Flowable<List<EthplorerTokenEntity>>
 
-    @Query("SELECT address FROM ethplorerTokens WHERE symbol LIKE  '%' || :symbol || '%'")
-    fun getAddresssBySymbol(symbol: String): Flowable<List<String>>
+    @Query("SELECT * FROM ethplorerTokens WHERE symbol LIKE  '%' || :symbol || '%'")
+    fun getAddresssBySymbol(symbol: String): Flowable<List<EthplorerTokenEntity>>
 
     @Insert
     fun insertAll(vararg tokens: EthplorerTokenEntity): Completable

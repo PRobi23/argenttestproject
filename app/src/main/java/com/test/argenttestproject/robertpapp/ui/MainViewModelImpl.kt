@@ -24,6 +24,6 @@ class MainViewModelImpl(
 
     companion object {
         const val WALLET_ADDRESS = "0xde57844f758a0a6a1910a4787ab2f7121c8978c3"
-        const val API_KEY = "0xde57844f758a0a6a1910a4787ab2f7121c8978c3"
+        const val API_KEY = "E5QFXD7ZYRH7THQM5PIXB8JD4GY38SEJZ4"
     }
 }
