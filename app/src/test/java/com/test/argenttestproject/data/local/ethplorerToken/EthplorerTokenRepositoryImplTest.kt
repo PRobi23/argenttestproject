@@ -4,14 +4,14 @@ import com.test.argenttestproject.robertpapp.data.local.ethplorerToken.Ethplorer
 import com.test.argenttestproject.robertpapp.data.local.ethplorerToken.EthplorerTokenEntity
 import com.test.argenttestproject.robertpapp.data.local.ethplorerToken.EthplorerTokenRepositoryImpl
 import com.test.argenttestproject.robertpapp.data.remote.api.EthplorerApi
-import com.test.argenttestproject.robertpapp.data.remote.response.EthplorerToken
-import com.test.argenttestproject.robertpapp.data.remote.response.EthplorerTokenPrice
-import com.test.argenttestproject.robertpapp.data.remote.response.EthplorerTokens
+import com.test.argenttestproject.robertpapp.data.remote.response.ethplorer.EthplorerToken
+import com.test.argenttestproject.robertpapp.data.remote.response.ethplorer.EthplorerTokens
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Test
 import io.mockk.verify
 import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import java.lang.RuntimeException
 
@@ -20,6 +20,8 @@ class EthplorerTokenRepositoryImplTest {
     private val mockEthplorerApi: EthplorerApi = mockk()
 
     private val mockEthplorerTokenDao: EthplorerTokenDao = mockk()
+
+    private val testSymbol = "USD"
 
     private val testData = EthplorerToken(
         address = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
@@ -158,6 +160,23 @@ class EthplorerTokenRepositoryImplTest {
 
             testSubscriber
                 .assertError(RuntimeException::class.java)
+        }
+    }
+
+    @Test
+    fun `when getEthplorerTokenAddressessBySymbol then the dao func is called`() {
+        val addresses = listOf("address1", "address2")
+        every {
+            mockEthplorerTokenDao.getAddresssBySymbol(testSymbol)
+        } returns Flowable.just(
+            addresses
+        )
+        withSut {
+            getEthplorerTokenAddressessBySymbol(testSymbol)
+
+            verify {
+                mockEthplorerTokenDao.getAddresssBySymbol(testSymbol)
+            }
         }
     }
 

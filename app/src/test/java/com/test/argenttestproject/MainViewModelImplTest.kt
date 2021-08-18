@@ -8,6 +8,7 @@ import com.test.argenttestproject.robertpapp.ui.MainViewModelImpl.Companion.WALL
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import org.junit.Before
 import org.junit.Test
@@ -19,7 +20,7 @@ class MainViewModelImplTest {
     private val mockEthplorerTokenRepository: EthplorerTokenRepository = mockk()
 
     @Before
-    fun setUp(){
+    fun setUp() {
         every {
             mockSharedPreferencesRepository.setApiKey(API_KEY)
         } returns Single.just(true)
@@ -27,6 +28,10 @@ class MainViewModelImplTest {
         every {
             mockSharedPreferencesRepository.setWalletAddress(WALLET_ADDRESS)
         } returns Single.just(true)
+
+        every {
+            mockEthplorerTokenRepository.updateEthplorerTokens()
+        } returns Completable.complete()
     }
 
     @Test
@@ -52,6 +57,18 @@ class MainViewModelImplTest {
                 mockSharedPreferencesRepository.setApiKey(
                     API_KEY
                 )
+            }
+        }
+    }
+
+
+    @Test
+    fun `when setupInitialValues is called then update ethplorer tokens`() {
+        withSut {
+            setupInitialValues()
+
+            verify {
+                mockEthplorerTokenRepository.updateEthplorerTokens()
             }
         }
     }

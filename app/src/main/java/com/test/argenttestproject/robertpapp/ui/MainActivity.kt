@@ -3,10 +3,10 @@ package com.test.argenttestproject.robertpapp.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.test.argenttestproject.R
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,14 +16,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         mainViewModel.setupInitialValues()
-            .subscribeOn(Schedulers.computation())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
+                onComplete = {
+                    setContentView(R.layout.main_activity)
+
+                },
                 onError = {
-                    Timber.e(it)
                     setContentView(R.layout.error_page)
                 }
             )
 
-        setContentView(R.layout.main_activity)
     }
 }

@@ -3,5 +3,6 @@
 
     <dimen name="huge_margin">180dp</dimen>
     <dimen name="small_margin">8dp</dimen>
+    <dimen name="medium_margin">16dp</dimen>
 
 </resources>

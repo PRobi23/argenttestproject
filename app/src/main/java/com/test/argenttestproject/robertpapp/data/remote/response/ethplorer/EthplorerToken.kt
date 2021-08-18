@@ -1,4 +1,4 @@
-package com.test.argenttestproject.robertpapp.data.remote.response
+package com.test.argenttestproject.robertpapp.data.remote.response.ethplorer
 
 data class EthplorerToken(
     val address: String?,

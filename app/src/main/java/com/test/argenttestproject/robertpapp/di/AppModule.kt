@@ -7,6 +7,7 @@ import com.test.argenttestproject.robertpapp.data.local.ethplorerToken.Ethplorer
 import com.test.argenttestproject.robertpapp.data.local.sharedRepository.SharedPreferenceRepository
 import com.test.argenttestproject.robertpapp.data.local.sharedRepository.SharedPreferenceRepositoryImpl
 import com.test.argenttestproject.robertpapp.ui.MainViewModelImpl
+import com.test.argenttestproject.robertpapp.ui.ercTwentyScreen.ErcTwentyScreenViewModelImpl
 import com.test.argenttestproject.robertpapp.ui.introScreen.IntroScreenViewModelImpl
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -17,6 +18,9 @@ val appModule = module {
     viewModel { IntroScreenViewModelImpl(get()) }
 
     viewModel { MainViewModelImpl(get(), get()) }
+
+    viewModel { ErcTwentyScreenViewModelImpl(get()) }
+
 
     single {
         getSharedPrefs(androidApplication())

@@ -1,7 +1,6 @@
 package com.test.argenttestproject.robertpapp.data.remote.api
 
-import com.test.argenttestproject.robertpapp.data.remote.response.EthplorerToken
-import com.test.argenttestproject.robertpapp.data.remote.response.EthplorerTokens
+import com.test.argenttestproject.robertpapp.data.remote.response.ethplorer.EthplorerTokens
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
